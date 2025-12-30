@@ -13,20 +13,8 @@ modules:
         - atim/starship
     install:
       packages:
-        # --- Essentials ---
         - micro
         - starship
-
-        # --- Intel GPU Drivers ---
-        - intel-media-driver
-        - libva-utils
-
-        # --- Laptop Power Tools ---
-        - powertop
-        - thermald
-
-        # --- Connectivity ---
-        - wireguard-tools
     remove:
       packages:
         - firefox
