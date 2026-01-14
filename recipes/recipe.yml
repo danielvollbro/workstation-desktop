@@ -1,0 +1,38 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: workstation-desktop
+description: Immutable Thin Client OS for Dell XPS (Intel).
+
+base-image: ghcr.io/ublue-os/aurora-dx
+image-version: 42
+
+modules:
+  - type: dnf
+    repos:
+      copr:
+        - atim/starship
+    install:
+      packages:
+        - micro
+        - starship
+    remove:
+      packages:
+        - firefox
+        - firefox-langpacks
+
+  - type: default-flatpaks
+    configurations:
+      - notify: true
+        scope: system
+        install:
+          - com.moonlight_stream.Moonlight
+          - org.mozilla.firefox
+          - com.google.Chrome
+
+  # --- System Services ---
+  - type: systemd
+    system:
+      enabled:
+        - thermald.service
+
+  - type: signing
